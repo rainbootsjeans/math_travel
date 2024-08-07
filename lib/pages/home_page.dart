@@ -41,7 +41,7 @@ class HomePage extends StatelessWidget {
                         ],
                       ),
                       Obx(() => Text(
-                          '${scheduleController.getMyTeamSchedule()[0][scheduleController.getCurrentScheduleIndex()]}'))
+                          '${scheduleController.getMyTeamSchedule()[1][scheduleController.getCurrentScheduleIndex()]}'))
                     ],
                   ),
                 )),
@@ -73,31 +73,30 @@ class _TeamSelecterState extends State<TeamSelecter> {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
-        child: DropdownButton(
-      isDense: true,
-      value: dropdownValue,
-      icon: const Icon(Icons.keyboard_arrow_down_outlined),
-      iconSize: 0,
-      onChanged: (String? value) {
-        setState(() {
-          dropdownValue = value!;
-        });
-        teamController.changeTeam(value);
-      },
-      items: teamList.map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(
-            value,
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w800,
-              color: green,
-            ),
-          ),
-        );
-      }).toList(),
-    ));
+        child: Obx(() => DropdownButton(
+              isDense: true,
+              value: teamController.team().currentTeam,
+              icon: const Icon(Icons.keyboard_arrow_down_outlined),
+              iconSize: 0,
+              onChanged: (String? value) {
+                setState(() {
+                  teamController.changeTeam(value);
+                });
+              },
+              items: teamList.map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(
+                    value,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w800,
+                      color: green,
+                    ),
+                  ),
+                );
+              }).toList(),
+            )));
   }
 }
 
@@ -120,7 +119,7 @@ class ScheduleTimer extends StatelessWidget {
     return Box(
       padding: const EdgeInsets.all(10),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const Text('1일차'),
@@ -135,21 +134,21 @@ class ScheduleTimer extends StatelessWidget {
                   scheduleController.schedule().currentPercentage.toDouble(),
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Obx(
-                () => Text(scheduleController.schedule().curScheduleStartTime),
-              ),
-              Obx(
-                () => Text(scheduleController
-                    .formatTime(scheduleController.getCurrentTimeAsInt())),
-              ),
-              Obx(
-                () => Text(scheduleController.schedule().curScheduleEndTime),
-              ),
-            ],
+          SizedBox(
+            width: displayWidth * 0.8,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Obx(
+                  () =>
+                      Text(scheduleController.schedule().curScheduleStartTime),
+                ),
+                Obx(
+                  () => Text(scheduleController.schedule().curScheduleEndTime),
+                ),
+              ],
+            ),
           ),
         ],
       ),

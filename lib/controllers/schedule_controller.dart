@@ -36,7 +36,8 @@ class ScheduleController extends GetxController {
   List getCurrentSchedule() {
     int currentTime = getCurrentTimeAsInt();
     List scheduleTimeInfo = schedule.value.scheduleTimeInfo;
-    List todayScheduleTimeInfo = scheduleTimeInfo[0];
+    List todayScheduleTimeInfo = scheduleTimeInfo[1];
+
     for (int i = 0; i < todayScheduleTimeInfo.length; i++) {
       if (currentTime >= todayScheduleTimeInfo[i][0] &&
           currentTime < todayScheduleTimeInfo[i][1]) {
@@ -49,7 +50,8 @@ class ScheduleController extends GetxController {
   int getCurrentScheduleIndex() {
     int currentTime = getCurrentTimeAsInt();
     List scheduleTimeInfo = schedule.value.scheduleTimeInfo;
-    List todayScheduleTimeInfo = scheduleTimeInfo[0];
+    List todayScheduleTimeInfo = scheduleTimeInfo[1];
+
     for (int i = 0; i < todayScheduleTimeInfo.length; i++) {
       if (currentTime >= todayScheduleTimeInfo[i][0] &&
           currentTime < todayScheduleTimeInfo[i][1]) {
