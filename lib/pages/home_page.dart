@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:math_travel/controllers/schedule_controller.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 
 import 'package:math_travel/controllers/team_controller.dart';
 import 'package:math_travel/widgets/box.dart';
@@ -8,6 +10,7 @@ import 'package:math_travel/themes/colors.dart';
 //팀 선택, 현재 일정 확인, 다음 일정까지 남은 시간 확인
 
 TeamController teamController = Get.put(TeamController());
+ScheduleController scheduleController = Get.put(ScheduleController());
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -38,7 +41,7 @@ class HomePage extends StatelessWidget {
                         ],
                       ),
                       Obx(() => Text(
-                          '${teamController.getSchedule(teamController.team().currentTeam)[0][0]}'))
+                          '${scheduleController.getMyTeamSchedule()[0][scheduleController.getCurrentScheduleIndex()]}'))
                     ],
                   ),
                 )),
@@ -48,16 +51,7 @@ class HomePage extends StatelessWidget {
               child: Box(child: CurruntScheduleIcon()),
             ),
             Flexible(child: Container(height: double.maxFinite)),
-            const Flexible(
-              flex: 6,
-              child: Box(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [Text('')],
-                ),
-              ),
-            ),
+            const Flexible(flex: 6, child: ScheduleTimer()),
           ],
         ),
       ),
@@ -113,5 +107,52 @@ class CurruntScheduleIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Icon(Icons.abc);
+  }
+}
+
+class ScheduleTimer extends StatelessWidget {
+  const ScheduleTimer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    double displayWidth = MediaQuery.of(context).size.width;
+
+    return Box(
+      padding: const EdgeInsets.all(10),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const Text('1일차'),
+          Obx(
+            () => LinearPercentIndicator(
+              alignment: MainAxisAlignment.center,
+              width: displayWidth * 0.8,
+              lineHeight: 15,
+              barRadius: const Radius.circular(20),
+              progressColor: green,
+              percent:
+                  scheduleController.schedule().currentPercentage.toDouble(),
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Obx(
+                () => Text(scheduleController.schedule().curScheduleStartTime),
+              ),
+              Obx(
+                () => Text(scheduleController
+                    .formatTime(scheduleController.getCurrentTimeAsInt())),
+              ),
+              Obx(
+                () => Text(scheduleController.schedule().curScheduleEndTime),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }
