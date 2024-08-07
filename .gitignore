@@ -14,7 +14,9 @@
 # For example, if you have any configuration files at the root you need to keep
 !/*.yaml
 !/*.yml
-!/*.json
+!/*.metadata
+!/*.lock
+!/*.md
 
 # Miscellaneous
 *.class
