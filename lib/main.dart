@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 // import 'package:get/get.dart';
 // import 'dart:async';
 //에뮬 패키지
@@ -19,7 +20,7 @@ void main() => runApp(
       //   builder: (context) => const MyApp(),
       // ),
       // 그냥
-      const MaterialApp(home: MyApp()),
+      const MyApp(),
     );
 
 class MyApp extends StatelessWidget {
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return const GetMaterialApp(
       //에뮬 (그냥할 때엔 builder 랑 locale 주석처리)
       // builder: DevicePreview.appBuilder,
       // locale: DevicePreview.locale(context),

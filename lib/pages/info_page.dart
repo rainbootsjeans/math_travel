@@ -1,7 +1,12 @@
 // import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
+import 'package:math_travel/pages/reports/info1.dart';
+import 'package:math_travel/pages/reports/info2.dart';
+import 'package:math_travel/pages/reports/info3.dart';
+import 'package:math_travel/pages/supporter_info.dart';
 import 'package:math_travel/widgets/box.dart';
 
 class InfoPage extends StatelessWidget {
@@ -18,7 +23,7 @@ class InfoPage extends StatelessWidget {
               flex: 30,
               child: Box(
                 padding: const EdgeInsets.all(20),
-                child: CarouselDemo(),
+                child: ReportsSlider(),
               ),
             ),
             Flexible(
@@ -27,20 +32,7 @@ class InfoPage extends StatelessWidget {
             )),
             const Flexible(
               flex: 6,
-              child: Box(
-                padding: EdgeInsets.all(20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('2024 수학여행 지원단'),
-                    Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      size: 15,
-                    )
-                  ],
-                ),
-              ),
+              child: SupporterInfo(),
             ),
           ],
         ),
@@ -49,14 +41,55 @@ class InfoPage extends StatelessWidget {
   }
 }
 
-class CarouselDemo extends StatelessWidget {
-  final List reportsInfo = [
-    {'img': 'assets/report_images/example_image_1.png', 'desc': 'BLT'},
-    {'img': 'assets/report_images/example_image_2.png', 'desc': '콰트로'},
-    {'img': 'assets/report_images/example_image_3.png', 'desc': '신'},
+class SupporterInfo extends StatelessWidget {
+  const SupporterInfo({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Get.to(const SupporterInfo());
+      },
+      child: const Box(
+        padding: EdgeInsets.all(20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('2024 수학여행 지원단'),
+            Icon(
+              Icons.arrow_forward_ios_rounded,
+              size: 15,
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ReportsSlider extends StatelessWidget {
+  final List<Map<String, dynamic>> reportsInfo = [
+    {
+      'img': 'assets/report_images/example_image_1.png',
+      'desc': 'BLT',
+      'route': const DetailInfoPage(),
+    },
+    {
+      'img': 'assets/report_images/example_image_2.png',
+      'desc': '콰트로',
+      'route': const DetailInfoPage2(),
+    },
+    {
+      'img': 'assets/report_images/example_image_3.png',
+      'desc': '신',
+      'route': const DetailInfoPage3(),
+    },
   ];
 
-  CarouselDemo({super.key});
+  ReportsSlider({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -75,16 +108,21 @@ class CarouselDemo extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      width: double.maxFinite,
-                      clipBehavior: Clip.hardEdge,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20.0),
+                    GestureDetector(
+                      onTap: () {
+                        Get.to(item['route']);
+                      },
+                      child: Container(
+                        width: double.maxFinite,
+                        clipBehavior: Clip.hardEdge,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                        child: Image(
+                            fit: BoxFit.fitWidth,
+                            alignment: Alignment.center,
+                            image: AssetImage(item['img'])),
                       ),
-                      child: Image(
-                          fit: BoxFit.fitWidth,
-                          alignment: Alignment.center,
-                          image: AssetImage(item['img'])),
                     ),
                     Text(item['desc'])
                   ],
