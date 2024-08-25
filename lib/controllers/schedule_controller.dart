@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:async';
 import 'package:math_travel/controllers/team_controller.dart';
@@ -5,11 +6,13 @@ import 'package:math_travel/models/team_model.dart';
 import 'package:math_travel/models/schedule_model.dart';
 
 // 처리해서 넘겨줄 수 있는 값들은 최대한 처리해서 넘겨주도록
-TeamController teamController = Get.put(TeamController());
 
 class ScheduleController extends GetxController {
   final team = TeamModel().obs;
   final schedule = ScheduleModel().obs;
+
+  TeamController teamController = Get.put(TeamController());
+
   late Timer? timer;
 
   @override
@@ -29,6 +32,29 @@ class ScheduleController extends GetxController {
   // String 현재 스케줄 → "schedule"
   // List 스케줄 시간 → [[aaaa,bbbb],[bbbb,cccc],[cccc,dddd],....]
   // List 현재 스케줄 시간 → [nnnn,mmmm]
+
+// 모든 일자의 팀스케줄 반환
+  List<List<String>> getMyTeamSchedule() {
+    return schedule.value.teamScheduleInfo[teamController.team().currentTeam];
+  }
+
+  Map<String, dynamic> getThisScheduleInfo(String receivedSchedule) {
+    Map<String, Map<String, dynamic>> scheduleInfo =
+        schedule.value.scheduleInfo;
+
+    if (receivedSchedule.contains('김포')) {
+      receivedSchedule = '비행기탐';
+    } else if (receivedSchedule.contains('-')) {
+      receivedSchedule = '이동중';
+    } else if (receivedSchedule == '조식' ||
+        receivedSchedule == '중식' ||
+        receivedSchedule == '석식') {
+      receivedSchedule = '식사';
+    }
+
+    return scheduleInfo[receivedSchedule] ??
+        {'icon': Icons.error, 'isPlace': true};
+  }
 
   // 날짜에 해당하는 스케줄 반환
   List getMyTodayTeamSchedule() {
@@ -91,6 +117,11 @@ class ScheduleController extends GetxController {
       int index = getMyTodayTeamScheduleTime().indexOf(currentScheduleTime);
       return getMyTodayTeamSchedule()[index];
     }
+  }
+
+  IconData getCurrentScheduleIcon() {
+    Map scheduleInfo = getThisScheduleInfo(getCurrentSchedule());
+    return scheduleInfo['icon'] ?? Icons.error_outline;
   }
 
   // int abcd(ab시 cd분)를 'ab:cd'로 반환

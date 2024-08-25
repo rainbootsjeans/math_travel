@@ -3,10 +3,22 @@ import 'package:get/get.dart';
 import 'package:math_travel/controllers/schedule_controller.dart';
 
 import 'package:math_travel/pages/home/home_page.dart';
-import 'package:math_travel/pages/home/after_home_page.dart';
 import 'package:math_travel/pages/info/info_page.dart';
 import 'package:math_travel/pages/map/map_page.dart';
 import 'package:math_travel/pages/team/team_page.dart';
+
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
+import 'package:math_travel/themes/colors.dart';
+
+//void main() {
+//  runApp(
+//    DevicePreview(
+//     enabled: !kReleaseMode,
+//    builder: (context) => const MyApp(),
+// ),
+//  );
+//}
 
 void main() {
   runApp(const MyApp());
@@ -43,6 +55,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: blueBright,
       body: PageView(
         controller: _pageController,
         onPageChanged: (index) {
@@ -56,7 +69,7 @@ class _MainPageState extends State<MainPage> {
             child: HomePage(),
           ),
           Padding(
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.only(bottom: 20, left: 20, right: 20),
             child: MapPage(),
           ),
           Padding(
@@ -70,6 +83,8 @@ class _MainPageState extends State<MainPage> {
         ],
       ),
       bottomNavigationBar: NavigationBar(
+        backgroundColor: blueBright,
+        indicatorColor: blue,
         height: MediaQuery.of(context).size.height * 0.1,
         selectedIndex: currentIndex,
         onDestinationSelected: (value) => setState(() {
@@ -82,11 +97,14 @@ class _MainPageState extends State<MainPage> {
         }),
         animationDuration: const Duration(microseconds: 500),
         destinations: const [
-          NavigationDestination(icon: Icon(Icons.home_outlined), label: 'Home'),
-          NavigationDestination(icon: Icon(Icons.map_outlined), label: 'Map'),
           NavigationDestination(
-              icon: Icon(Icons.people_alt_outlined), label: 'Team'),
-          NavigationDestination(icon: Icon(Icons.info_outline), label: 'Info'),
+              icon: Icon(Icons.home_outlined),
+              selectedIcon: Icon(Icons.home),
+              label: '홈'),
+          NavigationDestination(icon: Icon(Icons.map_outlined), label: '지도'),
+          NavigationDestination(
+              icon: Icon(Icons.people_alt_outlined), label: '팀'),
+          NavigationDestination(icon: Icon(Icons.info_outline), label: '정보'),
         ],
       ),
     );

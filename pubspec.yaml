@@ -65,7 +65,8 @@ flutter:
   assets:
     - assets/
     - assets/report_images/
-    - assets/schedule_images/
+    - assets/map_images/
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

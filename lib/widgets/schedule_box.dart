@@ -29,7 +29,7 @@ class ScheduleBox extends StatelessWidget {
           width: width,
           decoration: const BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(20)),
+            borderRadius: BorderRadius.all(Radius.circular(10)),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,

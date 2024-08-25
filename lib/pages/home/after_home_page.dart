@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 import 'package:math_travel/widgets/box.dart';
@@ -19,7 +18,21 @@ class AfterHomePage extends StatelessWidget {
             const Flexible(
               flex: 31,
               child: Box(
-                child: Text('대충 설문 링크'),
+                child: Padding(
+                  padding: EdgeInsets.only(right: 20, left: 20, top: 20),
+                  child: SizedBox(
+                      width: double.maxFinite,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('설문조사 하러가기'),
+                          Image(
+                              // width: double.maxFinite,
+                              fit: BoxFit.cover,
+                              image: AssetImage('assets/QRcode.png')),
+                        ],
+                      )),
+                ),
               ),
             ),
             Flexible(child: Container(height: double.maxFinite)),
@@ -30,7 +43,20 @@ class AfterHomePage extends StatelessWidget {
                   Get.to(const SchedulePage());
                 },
                 child: const Box(
-                  child: Text('스케줄보러가기'),
+                  child: Padding(
+                    padding: EdgeInsets.all(20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text('일정 보러가기'),
+                        Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          size: 15,
+                        )
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),

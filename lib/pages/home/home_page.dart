@@ -45,6 +45,7 @@ class HomePage extends StatelessWidget {
                                     )
                                   ],
                                 ),
+                                // 여기 왜 이렇게 해놨지 진짜모름
                                 Obx(() => Text(scheduleController
                                         .getCurrentSchedule()
                                         .isEmpty
@@ -56,7 +57,7 @@ class HomePage extends StatelessWidget {
                       Flexible(child: Container(height: double.maxFinite)),
                       const Flexible(
                         flex: 24,
-                        child: Box(child: CurruntScheduleIcon()),
+                        child: Box(child: Center(child: CurruntScheduleIcon())),
                       ),
                       Flexible(child: Container(height: double.maxFinite)),
                       const Flexible(flex: 6, child: ScheduleTimer()),
@@ -119,7 +120,14 @@ class CurruntScheduleIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Icon(Icons.abc);
+    return Obx(
+      () {
+        return Icon(
+          scheduleController.getCurrentScheduleIcon(),
+          size: MediaQuery.of(context).size.width * 0.65,
+        );
+      },
+    );
   }
 }
 

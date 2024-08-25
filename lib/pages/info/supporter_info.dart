@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:math_travel/widgets/supporters_introduce.dart';
+
 class SupporterInfoPage extends StatelessWidget {
   const SupporterInfoPage({super.key});
 
@@ -11,9 +13,50 @@ class SupporterInfoPage extends StatelessWidget {
         leading: GestureDetector(
             onTap: () => Get.back(), child: const Icon(Icons.arrow_back)),
       ),
-      body: const SafeArea(
+      body: SafeArea(
         child: Center(
-          child: Column(),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SupportersIntroduce(
+                  imageRoute: 'assets/QRcode.png',
+                  name: '김철수',
+                  role: '자료조사',
+                  desc: '안녕하세요 김철수입니다.',
+                ),
+                SupportersIntroduce(
+                  imageRoute: 'assets/QRcode.png',
+                  name: '김철수',
+                  role: '자료조사',
+                  desc: '안녕하세요 김철수입니다.',
+                ),
+                SupportersIntroduce(
+                  imageRoute: 'assets/QRcode.png',
+                  name: '김철수',
+                  role: '자료조사',
+                  desc: '안녕하세요 김철수입니다.',
+                ),
+                SupportersIntroduce(
+                  imageRoute: 'assets/QRcode.png',
+                  name: '김철수',
+                  role: '자료조사',
+                  desc: '안녕하세요 김철수입니다.',
+                ),
+                SupportersIntroduce(
+                  imageRoute: 'assets/QRcode.png',
+                  name: '김철수',
+                  role: '자료조사',
+                  desc: '안녕하세요 김철수입니다.',
+                ),
+                SupportersIntroduce(
+                  imageRoute: 'assets/QRcode.png',
+                  name: '김철수',
+                  role: '자료조사',
+                  desc: '안녕하세요 김철수입니다.',
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );

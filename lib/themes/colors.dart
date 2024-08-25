@@ -18,3 +18,5 @@ const blueBright = Color(0xffbcd7ea);
 
 const black = Color(0xff1c1d23);
 const blackBright = Color(0xff343640);
+
+const white = Color.fromARGB(255, 255, 255, 255);

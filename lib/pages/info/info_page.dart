@@ -57,7 +57,7 @@ class SupporterInfoButton extends StatelessWidget {
         padding: EdgeInsets.all(20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text('2024 수학여행 지원단'),
             Icon(

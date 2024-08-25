@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class ScheduleModel {
   int currentTime = 0;
   var currentPercentage = 0.0001;
@@ -30,13 +32,13 @@ class ScheduleModel {
     [
       [0, 700], //숙면
       [700, 830], //조식 = 에슐리
-      [830, 930], //뭘까 이 잉여시간은
+      [830, 930], // 개인정비
       [930, 1000], //숙소-세리카트
       [1000, 1100], //세리카트
       [1100, 1130], //세리-정방
       [1130, 1230], //정방폭포
       [1230, 1330], //정방-월정리
-      [1330, 1500], //월정리해변+중식 = 자유식
+      [1330, 1500], //월정리해수욕장+중식 = 자유식
       [1500, 1530], //월정리-성산
       [1530, 1630], //성산일출봉
       [1630, 1700], //성산-일출명가
@@ -63,9 +65,9 @@ class ScheduleModel {
     ]
   ];
 
-  List<List<String>> teamASchdule = [
+  List<List<String>> teamASchedule = [
     [
-      '임시일정A',
+      '임시일정',
       '학교집결',
       '학교-공항',
       '탑승수속',
@@ -86,13 +88,13 @@ class ScheduleModel {
     [
       '숙면',
       '조식',
-      '/뭘까 이 잉여시간은',
+      '개인정비',
       '숙소-세리카트',
       '세리카트',
       '세리-정방',
       '정방폭포',
       '정방-월정리',
-      '월정리해변+중식',
+      '월정리해수욕장+중식',
       '월정리-성산',
       '성산일출봉',
       '성산-일출명가',
@@ -105,7 +107,7 @@ class ScheduleModel {
     [
       '숙면',
       '조식',
-      '뭘까 이 잉여시간은',
+      '개인정비',
       '숙소-올레길',
       '올레길',
       '올레길-고기국수',
@@ -118,9 +120,9 @@ class ScheduleModel {
       '공항-학교',
     ],
   ];
-  List<List<String>> teamBSchdule = [
+  List<List<String>> teamBSchedule = [
     [
-      '임시일정B',
+      '임시일정',
       '학교집결',
       '학교-공항',
       '탑승수속',
@@ -141,13 +143,13 @@ class ScheduleModel {
     [
       '숙면',
       '조식',
-      '/뭘까 이 잉여시간은',
+      '개인정비',
       '숙소-정방폭포',
       '정방폭포',
       '정방폭포-세리카트',
       '세리카트',
       '세리카트-월정리',
-      '월정리해변+중식',
+      '월정리해수욕장+중식',
       '월정리-성산',
       '성산일출봉',
       '성산-일출명가',
@@ -173,9 +175,9 @@ class ScheduleModel {
       '공항-학교',
     ],
   ];
-  List<List<String>> teamCSchdule = [
+  List<List<String>> teamCSchedule = [
     [
-      '임시일정C',
+      '임시일정',
       '학교집결',
       '학교-공항',
       '탑승수속',
@@ -196,13 +198,13 @@ class ScheduleModel {
     [
       '숙면',
       '조식',
-      '/뭘까 이 잉여시간은',
+      '개인정비',
       '숙소-제트보트',
       '제트보트',
       '제트보트-정방',
       '정방폭포',
       '정방-월정리',
-      '월정리해변+중식',
+      '월정리해수욕장+중식',
       '월정리-성산',
       '성산일출봉',
       '성산-일출명가',
@@ -228,9 +230,9 @@ class ScheduleModel {
       '공항-학교',
     ],
   ];
-  List<List<String>> teamDSchdule = [
+  List<List<String>> teamDSchedule = [
     [
-      '임시일정D',
+      '임시일정',
       '학교집결',
       '학교-공항',
       '탑승수속',
@@ -251,13 +253,13 @@ class ScheduleModel {
     [
       '숙면',
       '조식',
-      '/뭘까 이 잉여시간은',
+      '개인정비',
       '숙소-올레길',
       '올레길',
       '올레길-제트보트',
       '제트보트',
       '제트보트-월정리',
-      '월정리해변+중식',
+      '월정리해수욕장+중식',
       '월정리-성산',
       '성산일출봉',
       '성산-일출명가',
@@ -284,12 +286,42 @@ class ScheduleModel {
     ],
   ];
 
+  Map<String, Map<String, dynamic>> scheduleInfo = {
+    // 이동류
+    '학교집결': {'icon': Icons.abc, 'isPlace': false},
+    '이동중': {'icon': Icons.abc, 'isPlace': false},
+    '비행기탐': {'icon': Icons.abc, 'isPlace': false},
+    '탑승수속': {'icon': Icons.abc, 'isPlace': false},
+
+    // 장소류
+    '새별오름': {'icon': Icons.abc, 'isPlace': true},
+    '오설록': {'icon': Icons.abc, 'isPlace': true},
+    '제트보트': {'icon': Icons.abc, 'isPlace': true},
+    '세리카트': {'icon': Icons.abc, 'isPlace': true},
+    '정방폭포': {'icon': Icons.abc, 'isPlace': true},
+    '월정리해수욕장': {'icon': Icons.abc, 'isPlace': true},
+    '성산일출봉': {'icon': Icons.abc, 'isPlace': true},
+    '올레길': {'icon': Icons.abc, 'isPlace': true},
+    '전통시장체험': {'icon': Icons.abc, 'isPlace': true},
+
+    // 숙소류
+    '숙소': {'icon': Icons.abc, 'isPlace': false},
+    '숙면': {'icon': Icons.abc, 'isPlace': false},
+    '개인정비': {'icon': Icons.abc, 'isPlace': false},
+    '학급활동/일상점검': {'icon': Icons.abc, 'isPlace': false},
+    '레크레이션': {'icon': Icons.abc, 'isPlace': true},
+
+    //기타
+    '임시일정': {'icon': Icons.abc, 'isPlace': false},
+    '식사': {'icon': Icons.abc, 'isPlace': false},
+  };
+
   ScheduleModel() {
     teamScheduleInfo = {
-      'A조': teamASchdule,
-      'B조': teamBSchdule,
-      'C조': teamCSchdule,
-      'D조': teamDSchdule,
+      'A조': teamASchedule,
+      'B조': teamBSchedule,
+      'C조': teamCSchedule,
+      'D조': teamDSchedule,
     };
   }
 }
