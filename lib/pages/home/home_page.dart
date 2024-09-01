@@ -122,10 +122,21 @@ class CurruntScheduleIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () {
-        return Icon(
-          scheduleController.getCurrentScheduleIcon(),
-          size: MediaQuery.of(context).size.width * 0.65,
-        );
+        var iconData = scheduleController.getCurrentScheduleIcon();
+
+        if (iconData is IconData) {
+          return Icon(
+            iconData,
+            size: MediaQuery.of(context).size.width * 0.65,
+          );
+        } else if (iconData is AssetImage) {
+          return Image(
+            image: iconData,
+            width: MediaQuery.of(context).size.width * 0.9,
+          );
+        } else {
+          return const Icon(Icons.error_outline);
+        }
       },
     );
   }

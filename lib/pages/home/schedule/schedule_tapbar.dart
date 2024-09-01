@@ -105,13 +105,18 @@ class ScheduleTapbarState extends State<ScheduleTapbar>
                                         (key, value) {
                                           Map scheduleInfo = scheduleController
                                               .getThisScheduleInfo(value);
+                                          var icon = scheduleInfo['icon'];
                                           return MapEntry(
                                               key,
                                               ScheduleBox(
                                                   isPlace:
                                                       scheduleInfo['isPlace'],
-                                                  icon: Icon(
-                                                      scheduleInfo['icon']),
+                                                  icon: icon is IconData
+                                                      ? Icon(icon)
+                                                      : (icon is AssetImage
+                                                          ? ImageIcon(icon)
+                                                          : const Icon(
+                                                              Icons.error)),
                                                   where: value,
                                                   startTime:
                                                       scheduleTimeIfos[index]

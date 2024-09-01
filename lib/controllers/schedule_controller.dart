@@ -46,9 +46,9 @@ class ScheduleController extends GetxController {
       receivedSchedule = '비행기탐';
     } else if (receivedSchedule.contains('-')) {
       receivedSchedule = '이동중';
-    } else if (receivedSchedule == '조식' ||
-        receivedSchedule == '중식' ||
-        receivedSchedule == '석식') {
+    } else if (receivedSchedule.contains('조식') ||
+        receivedSchedule.contains('중식') ||
+        receivedSchedule.contains('석식')) {
       receivedSchedule = '식사';
     }
 
@@ -119,7 +119,7 @@ class ScheduleController extends GetxController {
     }
   }
 
-  IconData getCurrentScheduleIcon() {
+  dynamic getCurrentScheduleIcon() {
     Map scheduleInfo = getThisScheduleInfo(getCurrentSchedule());
     return scheduleInfo['icon'] ?? Icons.error_outline;
   }

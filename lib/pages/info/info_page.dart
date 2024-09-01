@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:math_travel/pages/info/reports/about_ocha.dart';
+import 'package:math_travel/pages/info/reports/history_of_jeju.dart';
 
 import 'package:math_travel/widgets/box.dart';
 
 import 'package:math_travel/pages/info/supporter_info.dart';
 import 'package:math_travel/pages/info/reports/report_page_1.dart';
-import 'package:math_travel/pages/info/reports/report_page_2.dart';
-import 'package:math_travel/pages/info/reports/report_page_3.dart';
+import 'package:math_travel/pages/info/reports/sechelin.dart';
+import 'package:math_travel/pages/info/reports/promise_with_jeju.dart';
+import 'package:math_travel/pages/info/reports/jeju_lan_stroy.dart';
 // import 'package:math_travel/pages/info/reports/report_page_4.dart';
 
 class InfoPage extends StatelessWidget {
@@ -74,19 +77,40 @@ class SupporterInfoButton extends StatelessWidget {
 class ReportsSlider extends StatelessWidget {
   final List reportsInfo = [
     {
-      'img': 'assets/report_images/example_image_1.png',
-      'desc': 'BLT',
+      'img': 'assets/report_thumbnail/제주와의약속.png',
+      'route': const PromiseWithJeju(),
+    },
+    {
+      'img': 'assets/report_thumbnail/세슐랭.png',
+      'route': const Sechelin(),
+    },
+    {
+      'img': 'assets/report_thumbnail/오설록에서구매하면좋을녹차제품추천.png',
       'route': const ReportPage1(),
     },
     {
-      'img': 'assets/report_images/example_image_2.png',
-      'desc': '콰트로치즈와퍼',
-      'route': const ReportPage2(),
+      'img': 'assets/report_thumbnail/오설록에서보세요제주녹차이야기.png',
+      'route': const ReportPage1(),
     },
     {
-      'img': 'assets/report_images/example_image_3.png',
-      'desc': '신',
-      'route': const ReportPage3(),
+      'img': 'assets/report_thumbnail/녹차에대하여.png',
+      'route': const AboutOcha(),
+    },
+    {
+      'img': 'assets/report_thumbnail/제주문학의아름다움.png',
+      'route': const ReportPage1(),
+    },
+    {
+      'img': 'assets/report_thumbnail/제주어이야기.png',
+      'route': const JejuLanStroy(),
+    },
+    {
+      'img': 'assets/report_thumbnail/비행기에서보는물리.png',
+      'route': const ReportPage1(),
+    },
+    {
+      'img': 'assets/report_thumbnail/제주역사를한눈에.png',
+      'route': HistoryOfJeju(),
     },
   ];
 
@@ -104,62 +128,42 @@ class ReportsSlider extends StatelessWidget {
         viewportFraction: 0.8,
       ),
       items: reportsInfo
-          .map((item) => SizedBox(
-                width: double.maxFinite,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Get.to(item['route']);
-                      },
-                      child: Container(
+          .map(
+            (item) => SizedBox(
+              width: double.maxFinite,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(item['route']);
+                    },
+                    child: Container(
+                      width: double.maxFinite,
+                      clipBehavior: Clip.hardEdge,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      child: SizedBox(
                         width: double.maxFinite,
-                        clipBehavior: Clip.hardEdge,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        child: SizedBox(
-                          width: double.maxFinite,
-                          child: Stack(
-                            fit: StackFit.passthrough,
-                            alignment: AlignmentDirectional.bottomStart,
-                            children: [
-                              Image(
-                                fit: BoxFit.fitWidth,
-                                alignment: Alignment.center,
-                                image: AssetImage(item['img']),
-                              ),
-                              Container(
-                                  padding: const EdgeInsets.all(20),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        item['desc'],
-                                        style: const TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w700),
-                                      ),
-                                      const Text(
-                                        '김창섭',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w300),
-                                      )
-                                    ],
-                                  ))
-                            ],
-                          ),
+                        child: Stack(
+                          fit: StackFit.passthrough,
+                          alignment: AlignmentDirectional.bottomStart,
+                          children: [
+                            Image(
+                              fit: BoxFit.fitWidth,
+                              alignment: Alignment.center,
+                              image: AssetImage(item['img']),
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                  ],
-                ),
-              ))
+                  ),
+                ],
+              ),
+            ),
+          )
           .toList(),
     );
   }

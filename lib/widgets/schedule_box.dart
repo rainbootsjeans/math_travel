@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:math_travel/main.dart';
 
 class ScheduleBox extends StatelessWidget {
   final bool isPlace;
-  final Icon icon;
+  var icon;
   final String where;
   final int startTime;
   final int endTime;
@@ -21,6 +22,7 @@ class ScheduleBox extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+
     return Column(
       children: [
         Container(
@@ -38,7 +40,9 @@ class ScheduleBox extends StatelessWidget {
               SizedBox(width: width * 0.49, child: Text(where)),
               SizedBox(
                   width: width * 0.27,
-                  child: Center(child: Text('$startTime - $endTime')))
+                  child: Center(
+                      child: Text(
+                          '${scheduleController.formatTime(startTime)} - ${scheduleController.formatTime(endTime)}')))
             ],
           ),
         ),

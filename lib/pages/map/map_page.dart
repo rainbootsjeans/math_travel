@@ -1,12 +1,18 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 import 'package:math_travel/main.dart';
+import 'package:math_travel/pages/map/map_info_pages/map_info_0.dart';
+import 'package:math_travel/pages/map/map_info_pages/map_info_1.dart';
+import 'package:math_travel/pages/map/map_info_pages/map_info_2.dart';
+import 'package:math_travel/pages/map/map_info_pages/map_info_3.dart';
+import 'package:math_travel/pages/map/map_info_pages/map_info_4.dart';
+import 'package:math_travel/pages/map/map_info_pages/map_info_5.dart';
+import 'package:math_travel/pages/map/map_info_pages/map_info_6.dart';
+import 'package:math_travel/pages/map/map_info_pages/map_info_7.dart';
+import 'package:math_travel/pages/map/map_info_pages/map_info_8.dart';
 
 import 'package:math_travel/controllers/team_controller.dart';
-import 'package:math_travel/pages/map/map_info_pages/map_info_0.dart';
 
 import 'package:math_travel/themes/colors.dart';
 
@@ -65,7 +71,17 @@ Map currentMainSchedule = {
   'D조': teamDMainSchedule
 };
 
-Map scheduleRoute = {};
+Map scheduleRoute = {
+  '새별오름': const MapInfo0(),
+  '오설록': const MapInfo1(),
+  '제트보트': const MapInfo2(),
+  '세리카트': const MapInfo3(),
+  '정방폭포': const MapInfo4(),
+  '월정리해수욕장': const MapInfo5(),
+  '성산일출봉': const MapInfo6(),
+  '올레길': const MapInfo7(),
+  '전통시장체험': const MapInfo8(),
+};
 
 GlobalKey key0 = GlobalKey();
 GlobalKey key1 = GlobalKey();
@@ -140,7 +156,7 @@ class _MapPageState extends State<MapPage> {
                             TourList(
                               index: key,
                               where: value,
-                              route: const MapInfo0(),
+                              route: scheduleRoute[value],
                             ));
                       },
                     )
@@ -170,7 +186,7 @@ class TourList extends StatelessWidget {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    IconData icon = scheduleController.getThisScheduleInfo(where)['icon'];
+    var icon = scheduleController.getThisScheduleInfo(where)['icon'];
     return Container(
       alignment: index.isEven ? Alignment.centerLeft : Alignment.centerRight,
       width: width * (0.9 - index * 0.05),
@@ -187,7 +203,11 @@ class TourList extends StatelessWidget {
           ),
           width: height * 0.125,
           height: height * 0.125,
-          child: Icon(icon),
+          child: icon is IconData
+              ? Icon(icon)
+              : (icon is AssetImage
+                  ? ImageIcon(icon)
+                  : const Icon(Icons.error)),
         ),
       ),
     );
@@ -218,7 +238,7 @@ class TourPath extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final Paint wavePainter = Paint()
       ..color = white
-      ..strokeWidth = 5
+      ..strokeWidth = 15
       ..style = PaintingStyle.stroke;
 
     Path path = Path()
@@ -230,7 +250,7 @@ class TourPath extends CustomPainter {
       ..quadraticBezierTo(
           dx(2) + height * 0.4, dy(2) + height * 0.015, dx(3), dy(3))
       ..quadraticBezierTo(
-          dx(3) - height * 0.4, dy(3) + height * 0.015, dx(4), dy(4))
+          dx(3) - height * 0.35, dy(3) + height * 0.015, dx(4), dy(4))
       ..quadraticBezierTo(
           dx(4) + height * 0.4, dy(4) + height * 0.015, dx(5), dy(5))
       ..quadraticBezierTo(

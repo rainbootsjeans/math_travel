@@ -6,17 +6,18 @@ import 'package:math_travel/pages/home/home_page.dart';
 import 'package:math_travel/pages/info/info_page.dart';
 import 'package:math_travel/pages/map/map_page.dart';
 import 'package:math_travel/pages/team/team_page.dart';
+import 'package:math_travel/pages/notification/notification_page.dart';
 
-import 'package:device_preview/device_preview.dart';
-import 'package:flutter/foundation.dart';
+// import 'package:device_preview/device_preview.dart';
+// import 'package:flutter/foundation.dart';
 import 'package:math_travel/themes/colors.dart';
 
 //void main() {
 //  runApp(
 //    DevicePreview(
-//     enabled: !kReleaseMode,
-//    builder: (context) => const MyApp(),
-// ),
+//      enabled: !kReleaseMode,
+//      builder: (context) => const MyApp(),
+//    ),
 //  );
 //}
 
@@ -32,6 +33,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      theme: ThemeData(fontFamily: 'GmarketSans'),
+      themeMode: ThemeMode.system,
       home: MediaQuery(
         data: MediaQuery.of(context).copyWith(textScaler: TextScaler.noScaling),
         child: const MainPage(),
@@ -69,7 +72,7 @@ class _MainPageState extends State<MainPage> {
             child: HomePage(),
           ),
           Padding(
-            padding: EdgeInsets.only(bottom: 20, left: 20, right: 20),
+            padding: EdgeInsets.only(left: 20, right: 20),
             child: MapPage(),
           ),
           Padding(
@@ -78,8 +81,12 @@ class _MainPageState extends State<MainPage> {
           ),
           Padding(
             padding: EdgeInsets.all(20),
+            child: NotificationPage(),
+          ),
+          Padding(
+            padding: EdgeInsets.all(20),
             child: InfoPage(),
-          )
+          ),
         ],
       ),
       bottomNavigationBar: NavigationBar(
@@ -101,10 +108,22 @@ class _MainPageState extends State<MainPage> {
               icon: Icon(Icons.home_outlined),
               selectedIcon: Icon(Icons.home),
               label: '홈'),
-          NavigationDestination(icon: Icon(Icons.map_outlined), label: '지도'),
           NavigationDestination(
-              icon: Icon(Icons.people_alt_outlined), label: '팀'),
-          NavigationDestination(icon: Icon(Icons.info_outline), label: '정보'),
+              icon: Icon(Icons.map_outlined),
+              selectedIcon: Icon(Icons.map),
+              label: '지도'),
+          NavigationDestination(
+              icon: Icon(Icons.airplane_ticket_outlined),
+              selectedIcon: Icon(Icons.airplane_ticket),
+              label: '비행기'),
+          NavigationDestination(
+              icon: Icon(Icons.notifications_outlined),
+              selectedIcon: Icon(Icons.notifications),
+              label: '공지'),
+          NavigationDestination(
+              icon: Icon(Icons.info_outline),
+              selectedIcon: Icon(Icons.info),
+              label: '정보'),
         ],
       ),
     );
