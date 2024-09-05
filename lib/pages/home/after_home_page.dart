@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'package:math_travel/widgets/box.dart';
 // import 'package:math_travel/themes/colors.dart';
@@ -15,21 +16,27 @@ class AfterHomePage extends StatelessWidget {
       child: Center(
         child: Column(
           children: [
-            const Flexible(
+            Flexible(
               flex: 31,
               child: Box(
                 child: Padding(
-                  padding: EdgeInsets.only(right: 20, left: 20, top: 20),
+                  padding: const EdgeInsets.only(right: 20, left: 20, top: 20),
                   child: SizedBox(
                       width: double.maxFinite,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('설문조사 하러가기'),
-                          Image(
-                              // width: double.maxFinite,
-                              fit: BoxFit.cover,
-                              image: AssetImage('assets/QRcode.png')),
+                          const Text('설문조사 하러가기'),
+                          GestureDetector(
+                            onTap: () {
+                              launchUrl(Uri.parse(
+                                  'https://forms.gle/ZLjnnoHY9YR8pX3r6'));
+                            },
+                            child: const Image(
+                                // width: double.maxFinite,
+                                fit: BoxFit.cover,
+                                image: AssetImage('assets/QRcode.png')),
+                          ),
                         ],
                       )),
                 ),

@@ -24,7 +24,7 @@
     </queries>
    
     <application
-        android:label="math_travel"
+        android:label="세교 in 제주"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
+//import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:math_travel/pages/info/reports/about_ocha.dart';
+// import 'package:math_travel/pages/info/reports/airplanerepo.dart';
+// import 'package:math_travel/pages/info/reports/greentea.dart';
 import 'package:math_travel/pages/info/reports/history_of_jeju.dart';
-import 'package:math_travel/pages/notification/notification_page.dart';
+import 'package:math_travel/pages/info/reports/jejupoetry.dart';
+import 'package:math_travel/pages/info/reports/physics_in_airplane.dart';
+import 'package:math_travel/pages/info/reports/stone_granpapa.dart';
+// import 'package:math_travel/pages/info/reports/stoneman.dart';
+import 'package:math_travel/pages/info/notification_page.dart';
+import 'package:math_travel/pages/info/reports/tea_in_osulloc.dart';
+import 'package:math_travel/pages/info/reports/tea_recommend.dart';
 
 import 'package:math_travel/widgets/box.dart';
 
 import 'package:math_travel/pages/info/supporter_info.dart';
-import 'package:math_travel/pages/info/reports/report_page_1.dart';
 import 'package:math_travel/pages/info/reports/sechelin.dart';
 import 'package:math_travel/pages/info/reports/promise_with_jeju.dart';
 import 'package:math_travel/pages/info/reports/jeju_lan_stroy.dart';
@@ -39,14 +46,6 @@ class InfoPage extends StatelessWidget {
               SizedBox(
                 height: height * 0.162 - 20,
                 child: Button(
-                  title: '2024 수학여행 지원단',
-                  route: const SupporterInfoPage(),
-                ),
-              ),
-              SizedBox(height: height * 0.027),
-              SizedBox(
-                height: height * 0.162 - 20,
-                child: Button(
                   title: '여행준비 및 안전수칙',
                   route: const NotificationPage(),
                 ),
@@ -57,6 +56,14 @@ class InfoPage extends StatelessWidget {
                 child: Button(
                   title: '이것만은 꼭 지킵시다!',
                   route: const MustObservePadge(),
+                ),
+              ),
+              SizedBox(height: height * 0.027),
+              SizedBox(
+                height: height * 0.162 - 20,
+                child: Button(
+                  title: '2024 수학여행 지원단',
+                  route: const SupporterInfoPage(),
                 ),
               ),
               SizedBox(height: height * 0.027),
@@ -108,12 +115,16 @@ class ReportsSlider extends StatelessWidget {
       'route': const Sechelin(),
     },
     {
+      'img': 'assets/report_thumbnail/참쉽죠.png',
+      'route': const StoneGranpapa(),
+    },
+    {
       'img': 'assets/report_thumbnail/오설록에서구매하면좋을녹차제품추천.png',
-      'route': const ReportPage1(),
+      'route': const TeaRecommend()
     },
     {
       'img': 'assets/report_thumbnail/오설록에서보세요제주녹차이야기.png',
-      'route': const ReportPage1(),
+      'route': const TeaInOsulloc()
     },
     {
       'img': 'assets/report_thumbnail/녹차에대하여.png',
@@ -121,7 +132,7 @@ class ReportsSlider extends StatelessWidget {
     },
     {
       'img': 'assets/report_thumbnail/제주문학의아름다움.png',
-      'route': const ReportPage1(),
+      'route': const poetrypage(),
     },
     {
       'img': 'assets/report_thumbnail/제주어이야기.png',
@@ -129,7 +140,7 @@ class ReportsSlider extends StatelessWidget {
     },
     {
       'img': 'assets/report_thumbnail/비행기에서보는물리.png',
-      'route': const ReportPage1(),
+      'route': const PhysicsInAirplane(), // overflow issue
     },
     {
       'img': 'assets/report_thumbnail/제주역사를한눈에.png',

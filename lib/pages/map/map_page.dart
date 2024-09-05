@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:math_travel/main.dart';
+// import 'package:math_travel/main.dart';
 import 'package:math_travel/pages/map/map_info_pages/map_info_0.dart';
 import 'package:math_travel/pages/map/map_info_pages/map_info_1.dart';
 import 'package:math_travel/pages/map/map_info_pages/map_info_2.dart';

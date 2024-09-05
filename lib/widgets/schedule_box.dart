@@ -3,7 +3,7 @@ import 'package:math_travel/main.dart';
 
 class ScheduleBox extends StatelessWidget {
   final bool isPlace;
-  var icon;
+  //var icon;
   final String where;
   final int startTime;
   final int endTime;
@@ -13,7 +13,7 @@ class ScheduleBox extends StatelessWidget {
   ScheduleBox(
       {super.key,
       required this.isPlace,
-      required this.icon,
+      //required this.icon,
       required this.where,
       required this.startTime,
       required this.endTime});
@@ -36,7 +36,7 @@ class ScheduleBox extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              SizedBox(width: width * 0.09, child: icon),
+//              SizedBox(width: width * 0.09, child: icon),
               SizedBox(width: width * 0.44, child: Text(where)),
               SizedBox(
                   width: width * 0.33,

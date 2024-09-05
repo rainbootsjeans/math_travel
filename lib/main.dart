@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter/services.dart';
+
 import 'package:math_travel/controllers/schedule_controller.dart';
 
 import 'package:math_travel/pages/home/home_page.dart';
 import 'package:math_travel/pages/info/info_page.dart';
 import 'package:math_travel/pages/map/map_page.dart';
 import 'package:math_travel/pages/team/team_page.dart';
-import 'package:math_travel/pages/notification/notification_page.dart';
 
-// import 'package:device_preview/device_preview.dart';
-// import 'package:flutter/foundation.dart';
+//import 'package:device_preview/device_preview.dart';
+//import 'package:flutter/foundation.dart';
 import 'package:math_travel/themes/colors.dart';
 
 //void main() {
-//  runApp(
-//    DevicePreview(
-//      enabled: !kReleaseMode,
-//      builder: (context) => const MyApp(),
-//    ),
-//  );
+//runApp(
+//DevicePreview(
+// enabled: !kReleaseMode,
+// builder: (context) => const MyApp(),
+// ),
+//);
 //}
 
 void main() {
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     return GetMaterialApp(
       theme: ThemeData(fontFamily: 'GmarketSans'),
       themeMode: ThemeMode.system,
@@ -76,7 +78,7 @@ class _MainPageState extends State<MainPage> {
             child: MapPage(),
           ),
           Padding(
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.only(left: 20, right: 20),
             child: TeamPage(),
           ),
           // Padding(
@@ -84,7 +86,7 @@ class _MainPageState extends State<MainPage> {
           //   child: NotificationPage(),
           // ),
           Padding(
-            padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
+            padding: EdgeInsets.only(left: 20, right: 20),
             child: InfoPage(),
           ),
         ],

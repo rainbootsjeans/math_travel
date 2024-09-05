@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:math_travel/controllers/schedule_controller.dart';
 import 'package:math_travel/controllers/team_controller.dart';
+import 'package:math_travel/pages/home/before_home_page.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 import 'package:math_travel/widgets/box.dart';
@@ -65,12 +66,15 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               )
-            : const AfterHomePage();
+            : (scheduleController.schedule().beforeTravel
+                ? const BeforeHomePage()
+                : const AfterHomePage());
       },
     );
   }
 }
 
+//
 List<String> teamList = ['A조', 'B조', 'C조', 'D조'];
 
 class TeamSelecter extends StatefulWidget {

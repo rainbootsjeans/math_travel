@@ -6,7 +6,9 @@ class ScheduleModel {
   var curScheduleStartTime = '00:00';
   var curScheduleEndTime = '00:00';
   bool isTravel = false;
+  bool beforeTravel = true;
   late Map teamScheduleInfo;
+  var timeRemaing = '00:00:00';
 
   //주석은 A팀 기준, 근데 시간 자체는 다 같아서 상관 x
   final List scheduleTimeInfo = [
@@ -67,7 +69,7 @@ class ScheduleModel {
 
   List<List<String>> teamASchedule = [
     [
-      '임시일정',
+      '출발 전 준비',
       '학교집결',
       '학교-공항',
       '탑승수속',
@@ -122,7 +124,7 @@ class ScheduleModel {
   ];
   List<List<String>> teamBSchedule = [
     [
-      '임시일정',
+      '출발 전 준비',
       '학교집결',
       '학교-공항',
       '탑승수속',
@@ -177,7 +179,7 @@ class ScheduleModel {
   ];
   List<List<String>> teamCSchedule = [
     [
-      '임시일정',
+      '출발 전 준비',
       '학교집결',
       '학교-공항',
       '탑승수속',
@@ -232,7 +234,7 @@ class ScheduleModel {
   ];
   List<List<String>> teamDSchedule = [
     [
-      '임시일정',
+      '출발 전 준비',
       '학교집결',
       '학교-공항',
       '탑승수속',
@@ -288,35 +290,92 @@ class ScheduleModel {
 
   Map<String, Map<String, dynamic>> scheduleInfo = {
     // 이동류
-    '학교집결': {'icon': Icons.abc, 'isPlace': false},
-    '이동중': {'icon': Icons.abc, 'isPlace': false},
-    '비행기탐': {'icon': Icons.abc, 'isPlace': false},
-    '탑승수속': {'icon': Icons.abc, 'isPlace': false},
+    '학교집결': {
+      'icon': const AssetImage('assets/icon_images/학교집결.png'),
+      'isPlace': false
+    },
+    '이동중': {
+      'icon': const AssetImage('assets/icon_images/이동중.png'),
+      'isPlace': false
+    },
+    '비행기탐': {
+      'icon': const AssetImage('assets/icon_images/비행기탐.png'),
+      'isPlace': false
+    },
+    '탑승수속': {
+      'icon': const AssetImage('assets/icon_images/비행기탐.png'),
+      'isPlace': false
+    },
 
     // 장소류
-    '새별오름': {'icon': Icons.abc, 'isPlace': true},
+    '새별오름': {
+      'icon': const AssetImage('assets/icon_images/새별오름.png'),
+      'isPlace': true
+    },
     '오설록': {
       'icon': const AssetImage('assets/icon_images/오설록.png'),
       'isPlace': true
     },
-    '제트보트': {'icon': Icons.abc, 'isPlace': true},
-    '세리카트': {'icon': Icons.abc, 'isPlace': true},
-    '정방폭포': {'icon': Icons.abc, 'isPlace': true},
-    '월정리해수욕장': {'icon': Icons.abc, 'isPlace': true},
-    '성산일출봉': {'icon': Icons.abc, 'isPlace': true},
-    '올레길': {'icon': Icons.abc, 'isPlace': true},
-    '전통시장체험': {'icon': Icons.abc, 'isPlace': true},
+    '제트보트': {
+      'icon': const AssetImage('assets/icon_images/제트보트.png'),
+      'isPlace': true
+    },
+    '세리카트': {
+      'icon': const AssetImage('assets/icon_images/세리카트.png'),
+      'isPlace': true
+    },
+    '정방폭포': {
+      'icon': const AssetImage('assets/icon_images/정방폭포.png'),
+      'isPlace': true
+    },
+    '월정리해수욕장': {
+      'icon': const AssetImage('assets/icon_images/월정리해수욕장.png'),
+      'isPlace': true
+    },
+    '성산일출봉': {
+      'icon': const AssetImage('assets/icon_images/성산일출봉.png'),
+      'isPlace': true
+    },
+    '올레길': {
+      'icon': const AssetImage('assets/icon_images/올레길.png'),
+      'isPlace': true
+    },
+    '전통시장체험': {
+      'icon': const AssetImage('assets/icon_images/전통시장체험.png'),
+      'isPlace': true
+    },
 
     // 숙소류
-    '숙소': {'icon': Icons.abc, 'isPlace': false},
-    '숙면': {'icon': Icons.abc, 'isPlace': false},
-    '개인정비': {'icon': Icons.abc, 'isPlace': false},
-    '학급활동/일상점검': {'icon': Icons.abc, 'isPlace': false},
-    '레크레이션': {'icon': Icons.abc, 'isPlace': true},
+    '숙소': {
+      'icon': const AssetImage('assets/icon_images/숙소.png'),
+      'isPlace': false
+    },
+    '숙면': {
+      'icon': const AssetImage('assets/icon_images/숙소.png'),
+      'isPlace': false
+    },
+    '개인정비': {
+      'icon': const AssetImage('assets/icon_images/숙소.png'),
+      'isPlace': false
+    },
+    '학급활동/일상점검': {
+      'icon': const AssetImage('assets/icon_images/숙소.png'),
+      'isPlace': false
+    },
+    '레크레이션': {
+      'icon': const AssetImage('assets/icon_images/레크레이션.png'),
+      'isPlace': true
+    },
 
     //기타
-    '임시일정': {'icon': Icons.abc, 'isPlace': false},
-    '식사': {'icon': Icons.abc, 'isPlace': false},
+    '출발 전 준비': {
+      'icon': const AssetImage('assets/icon_images/학교집결.png'),
+      'isPlace': false
+    },
+    '식사': {
+      'icon': const AssetImage('assets/icon_images/식사.png'),
+      'isPlace': false
+    },
   };
 
   ScheduleModel() {

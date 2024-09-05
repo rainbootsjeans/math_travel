@@ -37,6 +37,17 @@ class HistoryOfJeju extends StatelessWidget {
                       ReportTitle(title: '', boldTitle: '제주역사를 한눈에!\n'),
                     ],
                   ),
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        '지도는 확대/축소가 가능해요!',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w100, fontSize: 10),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: height * 0.027),
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),

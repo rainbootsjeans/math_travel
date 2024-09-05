@@ -34,8 +34,11 @@ dependencies:
   get: ^4.6.6
   percent_indicator: ^4.2.3
   carousel_slider: ^4.2.1
-  modal_bottom_sheet: ^3.0.0
+  #modal_bottom_sheet: ^3.0.0
   url_launcher: ^6.3.0
+
+  flutter_drawing_board: ^0.9.3
+  flutter_colorpicker: ^1.1.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -75,7 +78,14 @@ flutter:
     - assets/report_assets/sechelin/
     - assets/report_assets/history_of_jeju/
     - assets/report_assets/learn_jeju_lan/
-    - assets/report_assets/about_ocha/      
+    - assets/report_assets/about_ocha/
+    - assets/report_assets/stone_granpapa/
+
+    - assets/report_assets/airplane_image/
+    - assets/report_assets/greentea_image/
+    - assets/report_assets/korean/
+    - assets/report_assets/ticket_image/
+    # - assets/report_assets/stoneman_image/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

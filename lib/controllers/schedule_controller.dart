@@ -175,23 +175,62 @@ class ScheduleController extends GetxController {
     return todaysDay;
   }
 
-  void isTravel() {
+  // void isTravel() {
+  //   DateTime now = DateTime.now();
+  //   DateTime startTime = DateTime(2024, 9, 9, 0, 0);
+  //   DateTime endTime = DateTime(2024, 9, 11, 19, 59, 59);
+  //   if (now.isAfter(startTime) && now.isBefore(endTime)) {
+  //     schedule.update((val) {
+  //       val?.isTravel = true;
+  //     });
+  //   } else {
+  //     schedule.update((val) {
+  //       val?.isTravel = false;
+  //     });
+  //   }
+  // }
+
+  void updateRemainTime() {
+    DateTime now = DateTime.now();
+    DateTime travelStart = DateTime(2024, 9, 9, 0, 0, 0);
+
+    Duration difference = travelStart.difference(now);
+
+    int hours = difference.inHours;
+    int minutes = difference.inMinutes.remainder(60);
+    int seconds = difference.inSeconds.remainder(60);
+    schedule.update((val) {
+      val?.timeRemaing =
+          '${hours.toString().padLeft(2, '0')}:${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
+    });
+  }
+
+  void updateTravelStatus() {
     DateTime now = DateTime.now();
     DateTime startTime = DateTime(2024, 9, 9, 0, 0);
     DateTime endTime = DateTime(2024, 9, 11, 19, 59, 59);
-    if (now.isAfter(startTime) && now.isBefore(endTime)) {
+
+    if (now.isBefore(startTime)) {
       schedule.update((val) {
-        val?.isTravel = true;
+        val?.beforeTravel = true;
+        val?.isTravel = false;
+      });
+    } else if (now.isAfter(endTime)) {
+      schedule.update((val) {
+        val?.beforeTravel = false;
+        val?.isTravel = false;
       });
     } else {
       schedule.update((val) {
-        val?.isTravel = false;
+        val?.beforeTravel = false;
+        val?.isTravel = true;
       });
     }
   }
 
   void updateScheduleModel() {
-    isTravel();
+    updateTravelStatus();
+    updateRemainTime();
     List curSchedule = getCurrentScheduleTime();
     int currentTime = getCurrentTimeAsInt();
 
