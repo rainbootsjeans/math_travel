@@ -15,6 +15,7 @@ class MapInfo5 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return NormalPage(
         imageRoute: 'assets/map_images/월정리해수욕장.png',
         title: '월정리 해수욕장',
@@ -28,6 +29,16 @@ class MapInfo5 extends StatelessWidget {
               title: '식사',
               content:
                   '해안선을 따라 늘어선 각종 카페와 식당들 또한 월정리만의 독특한 매력이라 할 수 있겠습니다.\n\n'),
+          const Text(
+            '사진 출처 : https://visitjeju.net/kr/detail/view?contentsid=CONT_000000000500496',
+            style: TextStyle(fontWeight: FontWeight.w100, fontSize: 10),
+          ),
+          SizedBox(height: height * 0.0648),
+          const Text(
+            '어떤 식당이 있는지 알아보기',
+            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
+          ),
+          SizedBox(height: height * 0.0162),
           SizedBox(
             height: width * 0.324,
             child: SingleChildScrollView(
@@ -56,10 +67,6 @@ class MapInfo5 extends StatelessWidget {
                     decoration: const BoxDecoration(color: black),
                     width: 1,
                     height: width * 0.324 * 0.8,
-                  ),
-                  const Text(
-                    '사진 출처 : https://visitjeju.net/kr/detail/view?contentsid=CONT_000000000500496',
-                    style: TextStyle(fontWeight: FontWeight.w100, fontSize: 10),
                   ),
                   SizedBox(width: width * 0.0324),
                   Row(
