@@ -1,9 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:math_travel/themes/colors.dart';
-import 'package:math_travel/widgets/box.dart';
 import 'package:math_travel/widgets/paragraph.dart';
 import 'package:math_travel/widgets/report_title.dart';
 

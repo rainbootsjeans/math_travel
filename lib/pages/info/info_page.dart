@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:math_travel/pages/info/reports/about_ocha.dart';
 import 'package:math_travel/pages/info/reports/history_of_jeju.dart';
+import 'package:math_travel/pages/notification/notification_page.dart';
 
 import 'package:math_travel/widgets/box.dart';
 
@@ -18,52 +20,73 @@ class InfoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height * 0.9;
     return SafeArea(
       child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Flexible(
-              flex: 30,
-              child: Box(
-                padding: const EdgeInsets.all(20),
-                child: ReportsSlider(),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(height: 20),
+              SizedBox(
+                child: Box(
+                  height: height * 0.810,
+                  padding: const EdgeInsets.all(20),
+                  child: ReportsSlider(),
+                ),
               ),
-            ),
-            Flexible(
-                child: Container(
-              height: double.maxFinite,
-            )),
-            const Flexible(
-              flex: 6,
-              child: SupporterInfoButton(),
-            ),
-          ],
+              SizedBox(height: height * 0.027),
+              SizedBox(
+                height: height * 0.162 - 20,
+                child: Button(
+                  title: '2024 수학여행 지원단',
+                  route: const SupporterInfoPage(),
+                ),
+              ),
+              SizedBox(height: height * 0.027),
+              SizedBox(
+                height: height * 0.162 - 20,
+                child: Button(
+                  title: '여행준비 및 안전수칙',
+                  route: const NotificationPage(),
+                ),
+              ),
+              SizedBox(height: height * 0.027),
+              SizedBox(
+                height: height * 0.162 - 20,
+                child: Button(
+                  title: '이것만은 꼭 지킵시다!',
+                  route: const MustObservePadge(),
+                ),
+              ),
+              SizedBox(height: height * 0.027),
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-class SupporterInfoButton extends StatelessWidget {
-  const SupporterInfoButton({
-    super.key,
-  });
+class Button extends StatelessWidget {
+  String title;
+  Widget route;
+  Button({super.key, required this.title, required this.route});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(const SupporterInfoPage());
+        Get.to(route);
       },
-      child: const Box(
-        padding: EdgeInsets.all(20),
+      child: Box(
+        padding: const EdgeInsets.all(20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text('2024 수학여행 지원단'),
-            Icon(
+            Text(title),
+            const Icon(
               Icons.arrow_forward_ios_rounded,
               size: 15,
             )

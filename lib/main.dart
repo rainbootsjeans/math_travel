@@ -79,12 +79,12 @@ class _MainPageState extends State<MainPage> {
             padding: EdgeInsets.all(20),
             child: TeamPage(),
           ),
+          // Padding(
+          //   padding: EdgeInsets.all(20),
+          //   child: NotificationPage(),
+          // ),
           Padding(
-            padding: EdgeInsets.all(20),
-            child: NotificationPage(),
-          ),
-          Padding(
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
             child: InfoPage(),
           ),
         ],
@@ -116,10 +116,10 @@ class _MainPageState extends State<MainPage> {
               icon: Icon(Icons.airplane_ticket_outlined),
               selectedIcon: Icon(Icons.airplane_ticket),
               label: '비행기'),
-          NavigationDestination(
-              icon: Icon(Icons.notifications_outlined),
-              selectedIcon: Icon(Icons.notifications),
-              label: '공지'),
+          // NavigationDestination(
+          //     icon: Icon(Icons.notifications_outlined),
+          //     selectedIcon: Icon(Icons.notifications),
+          //     label: '공지'),
           NavigationDestination(
               icon: Icon(Icons.info_outline),
               selectedIcon: Icon(Icons.info),

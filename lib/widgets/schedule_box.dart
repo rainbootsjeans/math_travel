@@ -37,9 +37,9 @@ class ScheduleBox extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               SizedBox(width: width * 0.09, child: icon),
-              SizedBox(width: width * 0.49, child: Text(where)),
+              SizedBox(width: width * 0.44, child: Text(where)),
               SizedBox(
-                  width: width * 0.27,
+                  width: width * 0.33,
                   child: Center(
                       child: Text(
                           '${scheduleController.formatTime(startTime)} - ${scheduleController.formatTime(endTime)}')))

@@ -50,7 +50,6 @@ class NormalPage extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.all(20),
                         width: width,
-                        height: height * 0.98,
                         decoration: const BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.only(
@@ -69,6 +68,7 @@ class NormalPage extends StatelessWidget {
                                   TextSpan(
                                       text: title,
                                       style: const TextStyle(
+                                          fontFamily: 'GmarketSans',
                                           fontSize: 35,
                                           fontWeight: FontWeight.w600)),
                                   const TextSpan(
@@ -77,6 +77,8 @@ class NormalPage extends StatelessWidget {
                                   TextSpan(
                                       text: subTitle,
                                       style: const TextStyle(
+                                          fontFamily: 'GmarketSans',
+                                          fontWeight: FontWeight.w100,
                                           color:
                                               Color.fromARGB(221, 90, 90, 90)))
                                 ],

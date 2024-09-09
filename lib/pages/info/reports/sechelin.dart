@@ -189,6 +189,18 @@ class RestaurantInfo extends StatelessWidget {
       'star': [5.0, 4.0, 5.0],
       'name': '월정리 갈비밥',
       'address': '제주특별자치도 제주시 구좌읍 월정7길 46',
+      'menus': [
+        {
+          'name': '제주를 담은 한상차림',
+          'desc': '제주 로컬 푸드 흑돼지, 전복, 뿔소라 등을 사용한 11첩 한상차림',
+          'price': '19,000원'
+        },
+        {
+          'name': '제주타워',
+          'desc': '오직 월정리갈비밥에서만 느낄 수 있는 한라봉 타워 에이드',
+          'price': '7,000원'
+        }
+      ]
     },
     {
       'thumImage': 'assets/report_assets/sechelin/유메이.png',
@@ -198,6 +210,11 @@ class RestaurantInfo extends StatelessWidget {
       'star': [4.0, 5.0, 3.0],
       'name': '유메이 우동',
       'address': '제주특별자치도 제주시 구좌읍 월정3길 52',
+      'menus': [
+        {'name': '소곱창 우동', 'desc': '', 'price': '13,000원'},
+        {'name': '소고기 우동', 'desc': '', 'price': '10,000원'},
+        {'name': '소고기 카레우동', 'desc': '', 'price': '13,000원'}
+      ],
     },
     {
       'thumImage': 'assets/report_assets/sechelin/제주로움.png',
@@ -207,6 +224,12 @@ class RestaurantInfo extends StatelessWidget {
       'star': [4.0, 3.0, 4.0],
       'name': '제주로움',
       'address': '제주특별자치도 제주시 구좌읍 월정3길 14',
+      'menus': [
+        {'name': '현무암 카츠', 'desc': '', 'price': '12,000원'},
+        {'name': '새우몬딱', 'desc': '', 'price': '13,000원'},
+        {'name': '연어몬딱', 'desc': '', 'price': '17,000원'},
+        {'name': '맨도롱 우동', 'desc': '', 'price': '11,000원'},
+      ],
     },
   ];
 
@@ -215,6 +238,7 @@ class RestaurantInfo extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     Map recievedInfo = info[initialIndex];
+    List recievedMenus = recievedInfo['menus'] ?? [];
     return Scaffold(
       backgroundColor: white,
       appBar: AppBar(
@@ -253,13 +277,13 @@ class RestaurantInfo extends StatelessWidget {
                           children: [
                             TextSpan(text: recievedInfo['name']),
                             TextSpan(
-                              text: '   ' + recievedInfo['address'],
+                              text: '   ${recievedInfo['address']}',
                               style: const TextStyle(
                                   fontSize: 10, fontWeight: FontWeight.w300),
                             )
                           ]),
                     ),
-                    SizedBox(height: height * 0.0125),
+                    SizedBox(height: height * 0.025),
                     Box(
                       height: height * 0.135,
                       width: double.maxFinite,
@@ -363,6 +387,75 @@ class RestaurantInfo extends StatelessWidget {
                               ),
                             ],
                           )
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: height * 0.025),
+                    SizedBox(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          RichText(
+                            text: const TextSpan(
+                              style: TextStyle(
+                                  color: black,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w600),
+                              children: [
+                                TextSpan(text: '메뉴'),
+                                TextSpan(
+                                  text: '', //'    눌러서 웹으로 보기',
+                                  style: TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w300),
+                                )
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: height * 0.01),
+                          GestureDetector(
+                            onTap: () {
+                              // launchUrl(
+                              //   Uri.parse(recievedInfo['mapURL']),
+                              // );
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                  color: white,
+                                  borderRadius: BorderRadius.circular(20),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.1),
+                                      spreadRadius: 5,
+                                      blurRadius: 5,
+                                      offset: const Offset(0, 1),
+                                    ),
+                                  ]),
+                              clipBehavior: Clip.hardEdge,
+                              width: width - 20,
+                              child: Column(
+                                  children: recievedMenus
+                                      .asMap()
+                                      .map(
+                                        (key, value) {
+                                          return MapEntry(
+                                              key,
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Text('${value['name']}'),
+                                                  Text('${value['price']}')
+                                                ],
+                                              ));
+                                        },
+                                      )
+                                      .values
+                                      .toList()),
+                            ),
+                          ),
                         ],
                       ),
                     ),

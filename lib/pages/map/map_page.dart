@@ -186,7 +186,7 @@ class TourList extends StatelessWidget {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    var icon = scheduleController.getThisScheduleInfo(where)['icon'];
+    // var icon = scheduleController.getThisScheduleInfo(where)['icon'];
     return Container(
       alignment: index.isEven ? Alignment.centerLeft : Alignment.centerRight,
       width: width * (0.9 - index * 0.05),
@@ -196,6 +196,7 @@ class TourList extends StatelessWidget {
           Get.to(route);
         },
         child: Container(
+          clipBehavior: Clip.hardEdge,
           key: keys[index],
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(100),
@@ -203,11 +204,14 @@ class TourList extends StatelessWidget {
           ),
           width: height * 0.125,
           height: height * 0.125,
-          child: icon is IconData
-              ? Icon(icon)
-              : (icon is AssetImage
-                  ? ImageIcon(icon)
-                  : const Icon(Icons.error)),
+          child: Image(
+            image: AssetImage('assets/map_images/$where.png'),
+          ),
+          // child: icon is IconData
+          //     ? Icon(icon)
+          //     : (icon is AssetImage
+          //         ? ImageIcon(icon)
+          //         : const Icon(Icons.error)),
         ),
       ),
     );

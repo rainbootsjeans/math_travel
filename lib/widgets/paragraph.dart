@@ -17,12 +17,10 @@ class Paragraph extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 20),
       child: RichText(
-          text: TextSpan(
-              style: TextStyle(
-                  color: black,
-                  fontSize: size ?? 20,
-                  fontFamily: 'GmarketSans'),
-              children: [
+        text: TextSpan(
+          style: TextStyle(
+              color: black, fontSize: size ?? 20, fontFamily: 'GmarketSans'),
+          children: [
             TextSpan(
                 text: title,
                 style: const TextStyle(fontWeight: FontWeight.w500)),
@@ -30,7 +28,9 @@ class Paragraph extends StatelessWidget {
             TextSpan(
                 text: content,
                 style: const TextStyle(fontWeight: FontWeight.w300)),
-          ])),
+          ],
+        ),
+      ),
     );
   }
 }

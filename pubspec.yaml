@@ -69,6 +69,7 @@ flutter:
     - assets/report_thumbnail/
     - assets/report_assets/
     - assets/map_images/
+    - assets/map_images/월정리식당/
     - assets/icon_images/
 
     - assets/report_assets/sechelin/

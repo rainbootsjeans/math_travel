@@ -15,7 +15,11 @@ class MapInfo7 extends StatelessWidget {
           Paragraph(
               title: '소개',
               content:
-                  ' 외돌개는 제주 올레길 7코스로, 바다에서 20m 높이로 홀로 우뚝 솟은 형상의 돌 기둥입니다. \'바다에 홀로 서 있다\' 하여 \'외돌개\'라는 이름이 붙여졌습니다.')
+                  '외돌개는 제주 올레길 7코스로, 바다에서 20m 높이로 홀로 우뚝 솟은 형상의 돌 기둥입니다.\n\n\'바다에 홀로 서 있다\'하여 \'외돌개\'라는 이름이 붙여졌습니다.'),
+          const Text(
+            '사진 출처 : https://visitjeju.net/kr/detail/view?contentsid=CNTS_000000000018409',
+            style: TextStyle(fontWeight: FontWeight.w100, fontSize: 10),
+          ),
         ]);
   }
 }
