@@ -1,3 +1,3 @@
-class Team {
+class TeamModel {
   String? currentTeam = 'A조';
 }

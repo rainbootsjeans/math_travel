@@ -1,27 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import 'package:get/get.dart';
-// import 'dart:async';
-//에뮬 패키지
-// import 'package:device_preview/device_preview.dart';
-// import 'package:flutter/widgets.dart';
-// import 'package:flutter/cupertino.dart';
+import 'package:math_travel/controllers/schedule_controller.dart';
 
-import 'package:math_travel/pages/home_page.dart';
-import 'package:math_travel/pages/team_page.dart';
-import 'package:math_travel/pages/info_page.dart';
-import 'package:math_travel/pages/map_page.dart';
+import 'package:math_travel/pages/home/home_page.dart';
+import 'package:math_travel/pages/home/after_home_page.dart';
+import 'package:math_travel/pages/info/info_page.dart';
+import 'package:math_travel/pages/map/map_page.dart';
+import 'package:math_travel/pages/team/team_page.dart';
 
-// import 'package:math_travel/themes/colors.dart';
+void main() {
+  runApp(const MyApp());
+}
 
-void main() => runApp(
-      // //애뮬
-      // DevicePreview(
-      //   builder: (context) => const MyApp(),
-      // ),
-      // 그냥
-      const MyApp(),
-    );
+ScheduleController scheduleController = Get.put(ScheduleController());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -29,32 +20,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const GetMaterialApp(
-      //에뮬 (그냥할 때엔 builder 랑 locale 주석처리)
-      // builder: DevicePreview.appBuilder,
-      // locale: DevicePreview.locale(context),
-
-      home: Navigation(),
+      home: MainPage(),
     );
   }
 }
 
-class Navigation extends StatefulWidget {
-  const Navigation({super.key});
+class MainPage extends StatefulWidget {
+  const MainPage({super.key});
 
   @override
-  State<Navigation> createState() => _NavigationState();
+  State<MainPage> createState() => _MainPageState();
 }
 
-class _NavigationState extends State<Navigation> {
-  int _currentIndex = 0;
+class _MainPageState extends State<MainPage> {
+  int currentIndex = 0;
   final PageController _pageController = PageController();
   int selectedIndex = 0;
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +44,7 @@ class _NavigationState extends State<Navigation> {
         controller: _pageController,
         onPageChanged: (index) {
           setState(() {
-            _currentIndex = index;
+            currentIndex = index;
           });
         },
         children: const [
@@ -86,9 +67,10 @@ class _NavigationState extends State<Navigation> {
         ],
       ),
       bottomNavigationBar: NavigationBar(
-        selectedIndex: _currentIndex,
+        height: MediaQuery.of(context).size.height * 0.1,
+        selectedIndex: currentIndex,
         onDestinationSelected: (value) => setState(() {
-          _currentIndex = value;
+          currentIndex = value;
           _pageController.animateToPage(
             value,
             duration: const Duration(milliseconds: 300),
@@ -98,13 +80,10 @@ class _NavigationState extends State<Navigation> {
         animationDuration: const Duration(microseconds: 500),
         destinations: const [
           NavigationDestination(icon: Icon(Icons.home_outlined), label: 'Home'),
-
           NavigationDestination(icon: Icon(Icons.map_outlined), label: 'Map'),
           NavigationDestination(
               icon: Icon(Icons.people_alt_outlined), label: 'Team'),
           NavigationDestination(icon: Icon(Icons.info_outline), label: 'Info'),
-          // NavigationDestination(
-          //     icon: Icon(Icons.ac_unit_outlined), label: 'label'),
         ],
       ),
     );

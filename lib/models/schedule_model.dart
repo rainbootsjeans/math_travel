@@ -1,12 +1,13 @@
-class Schedule {
+class ScheduleModel {
   int currentTime = 0;
   var currentPercentage = 0.0001;
   var curScheduleStartTime = '00:00';
   var curScheduleEndTime = '00:00';
+  bool isTravel = false;
   late Map teamScheduleInfo;
 
   //주석은 A팀 기준, 근데 시간 자체는 다 같아서 상관 x
-  final List<List<List<int>>> scheduleTimeInfo = [
+  final List scheduleTimeInfo = [
     [
       [0, 600],
       [600, 630], //학교집결
@@ -42,7 +43,7 @@ class Schedule {
       [1700, 1800], //석식 = 일출명가
       [1800, 1930], //일출-숙소
       [1930, 2130], //레크레이션
-      [2200, 2230], //학급활동/일상점검
+      [2130, 2230], //학급활동/일상점검
       [2230, 2400], //숙면
     ],
     [
@@ -61,6 +62,7 @@ class Schedule {
       [1810, 2000] //공항-학교
     ]
   ];
+
   List teamASchdule = [
     [
       '임시일정A',
@@ -282,7 +284,7 @@ class Schedule {
     ],
   ];
 
-  Schedule() {
+  ScheduleModel() {
     teamScheduleInfo = {
       'A조': teamASchdule,
       'B조': teamBSchdule,

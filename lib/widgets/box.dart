@@ -4,9 +4,15 @@ class Box extends StatelessWidget {
   final double? width;
   final double? height;
   final EdgeInsets? padding;
+  final Color? color;
   final Widget child;
   const Box(
-      {super.key, required this.child, this.width, this.height, this.padding});
+      {super.key,
+      required this.child,
+      this.width,
+      this.height,
+      this.padding,
+      this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +21,7 @@ class Box extends StatelessWidget {
         height: height ?? double.maxFinite,
         padding: padding ?? const EdgeInsets.all(0),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: color ?? Colors.white,
           borderRadius: const BorderRadius.all(Radius.circular(20)),
           boxShadow: [
             BoxShadow(

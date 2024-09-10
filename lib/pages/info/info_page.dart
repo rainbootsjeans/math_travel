@@ -1,13 +1,14 @@
-// import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-import 'package:math_travel/pages/reports/info1.dart';
-import 'package:math_travel/pages/reports/info2.dart';
-import 'package:math_travel/pages/reports/info3.dart';
-import 'package:math_travel/pages/supporter_info.dart';
 import 'package:math_travel/widgets/box.dart';
+
+import 'package:math_travel/pages/info/supporter_info.dart';
+import 'package:math_travel/pages/info/reports/report_page_1.dart';
+import 'package:math_travel/pages/info/reports/report_page_2.dart';
+import 'package:math_travel/pages/info/reports/report_page_3.dart';
+// import 'package:math_travel/pages/info/reports/report_page_4.dart';
 
 class InfoPage extends StatelessWidget {
   const InfoPage({super.key});
@@ -32,7 +33,7 @@ class InfoPage extends StatelessWidget {
             )),
             const Flexible(
               flex: 6,
-              child: SupporterInfo(),
+              child: SupporterInfoButton(),
             ),
           ],
         ),
@@ -41,8 +42,8 @@ class InfoPage extends StatelessWidget {
   }
 }
 
-class SupporterInfo extends StatelessWidget {
-  const SupporterInfo({
+class SupporterInfoButton extends StatelessWidget {
+  const SupporterInfoButton({
     super.key,
   });
 
@@ -50,7 +51,7 @@ class SupporterInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(const SupporterInfo());
+        Get.to(const SupporterInfoPage());
       },
       child: const Box(
         padding: EdgeInsets.all(20),
@@ -71,21 +72,21 @@ class SupporterInfo extends StatelessWidget {
 }
 
 class ReportsSlider extends StatelessWidget {
-  final List<Map<String, dynamic>> reportsInfo = [
+  final List reportsInfo = [
     {
       'img': 'assets/report_images/example_image_1.png',
       'desc': 'BLT',
-      'route': const DetailInfoPage(),
+      'route': const ReportPage1(),
     },
     {
       'img': 'assets/report_images/example_image_2.png',
-      'desc': '콰트로',
-      'route': const DetailInfoPage2(),
+      'desc': '콰트로치즈와퍼',
+      'route': const ReportPage2(),
     },
     {
       'img': 'assets/report_images/example_image_3.png',
       'desc': '신',
-      'route': const DetailInfoPage3(),
+      'route': const ReportPage3(),
     },
   ];
 
@@ -118,13 +119,44 @@ class ReportsSlider extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20.0),
                         ),
-                        child: Image(
-                            fit: BoxFit.fitWidth,
-                            alignment: Alignment.center,
-                            image: AssetImage(item['img'])),
+                        child: SizedBox(
+                          width: double.maxFinite,
+                          child: Stack(
+                            fit: StackFit.passthrough,
+                            alignment: AlignmentDirectional.bottomStart,
+                            children: [
+                              Image(
+                                fit: BoxFit.fitWidth,
+                                alignment: Alignment.center,
+                                image: AssetImage(item['img']),
+                              ),
+                              Container(
+                                  padding: const EdgeInsets.all(20),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        item['desc'],
+                                        style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                      const Text(
+                                        '김창섭',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w300),
+                                      )
+                                    ],
+                                  ))
+                            ],
+                          ),
+                        ),
                       ),
                     ),
-                    Text(item['desc'])
                   ],
                 ),
               ))
