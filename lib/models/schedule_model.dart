@@ -12,7 +12,7 @@ class ScheduleModel {
       [0, 600],
       [600, 630], //학교집결
       [630, 800], //학교 -공항
-      [800, 830], //탑승수속
+      [800, 900], //탑승수속
       [900, 1200], //김포-제주
       [1200, 1230], //중식=이레한정식
       [1230, 1330], //공항-새별오름
@@ -63,7 +63,7 @@ class ScheduleModel {
     ]
   ];
 
-  List teamASchdule = [
+  List<List<String>> teamASchdule = [
     [
       '임시일정A',
       '학교집결',
@@ -118,7 +118,7 @@ class ScheduleModel {
       '공항-학교',
     ],
   ];
-  List teamBSchdule = [
+  List<List<String>> teamBSchdule = [
     [
       '임시일정B',
       '학교집결',
@@ -173,7 +173,7 @@ class ScheduleModel {
       '공항-학교',
     ],
   ];
-  List teamCSchdule = [
+  List<List<String>> teamCSchdule = [
     [
       '임시일정C',
       '학교집결',
@@ -228,7 +228,7 @@ class ScheduleModel {
       '공항-학교',
     ],
   ];
-  List teamDSchdule = [
+  List<List<String>> teamDSchdule = [
     [
       '임시일정D',
       '학교집결',

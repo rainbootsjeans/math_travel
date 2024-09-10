@@ -137,11 +137,11 @@ class ScheduleController extends GetxController {
 
   int getTodaysDay() {
     List todayTeamSchedule = getMyTodayTeamScheduleTime();
-    if (todayTeamSchedule == []) {
-      return 1;
+    if (schedule().isTravel == false) {
+      return 0;
     }
     int todaysDay = schedule.value.scheduleTimeInfo.indexOf(todayTeamSchedule);
-    return todaysDay + 1;
+    return todaysDay;
   }
 
   void isTravel() {

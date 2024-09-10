@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:math_travel/controllers/schedule_controller.dart';
 import 'package:math_travel/controllers/team_controller.dart';
-import 'package:math_travel/pages/home/after_home_page.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 import 'package:math_travel/widgets/box.dart';
 import 'package:math_travel/themes/colors.dart';
 
-import 'package:math_travel/pages/home/schedule_page.dart';
+import 'package:math_travel/pages/home/schedule/schedule_page.dart';
+import 'package:math_travel/pages/home/after_home_page.dart';
 
 TeamController teamController = Get.put(TeamController());
 ScheduleController scheduleController = Get.put(ScheduleController());
@@ -141,7 +141,7 @@ class ScheduleTimer extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Obx(
-              () => Text('${scheduleController.getTodaysDay()}일차'),
+              () => Text('${scheduleController.getTodaysDay() + 1}일차'),
             ),
             Obx(
               () => LinearPercentIndicator(
